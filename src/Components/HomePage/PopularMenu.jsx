@@ -1,4 +1,4 @@
-import SectionTitle from "../title/SectionTitle";
+ import SectionTitle from "../title/SectionTitle";
 import MenuItems from "../../shared/menuItems";
 import useMenu from "../../hooks/useMenu";
 
@@ -16,7 +16,7 @@ const PopularMenu = () => {
                 }
             </div>
             <div className="flex justify-center">
-            <button className="btn mx-auto btn-info btn-outline border-0 border-y-4 mt-4">View full menu</button>
+            <button className="btn btn-outline border-0 border-b-4 mt-4">View full menu</button>
             </div>
         </section>
     );
