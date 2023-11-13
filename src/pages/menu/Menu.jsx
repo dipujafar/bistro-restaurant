@@ -26,7 +26,7 @@ const Menu = () => {
             <CoverBanner img={menuImg} title={"Our Menu"}></CoverBanner>
             {/* offered menus */}
             <SectionTitle heading="today's offer" subHeading="Don't miss"></SectionTitle>
-            <MenuCategory items={offered}></MenuCategory>
+            <MenuCategory items={offered} title="offer"></MenuCategory>
             {/* dessert menus */}
             <MenuCategory items={dessert} title={"dessert"} img={dessertImg} ></MenuCategory>
             {/* pizza menus */}
