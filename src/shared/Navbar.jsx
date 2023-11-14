@@ -28,6 +28,14 @@ const Navbar = () => {
          Order Food
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/login"
+          className={({ isActive }) => (isActive ? "text-red-600" : "")}
+        >
+        Login
+        </NavLink>
+      </li>
     </>
   );
   return (
