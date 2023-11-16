@@ -27,7 +27,7 @@ const CoverBanner = ({ img, title }) => {
   );
 };
 CoverBanner.propTypes = {
-    img: PropTypes.img,
+    img: PropTypes.node,
     title: PropTypes.string
   };
 

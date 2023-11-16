@@ -6,50 +6,62 @@ import { Link } from "react-router-dom";
 import loginImg from '../../assets/others/authentication1.png'
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
+import { toast } from 'react-toastify'
 
 const SingUp = () => {
     const [show, setShow] = useState(false);
     const {createUser} = useAuth();
 
-    const handleSingUp = e =>{
-        e.preventDefault();
-        const form = e.target;
-        // const name = form.name.value;
-        const email = form.email.value;
-        const password = form.password.value;
+    const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+    } = useForm();
 
-        createUser(email,password)
-        .then(result=>{
-            console.log(result.user)
-        })
-    }
+    const onSubmit = (data) => {
+    reset();
+      const {email, password} = data || {}
+      createUser(email,password)
+      .then(()=>{
+        toast.success("Successfully sing Up");
+      })
+    };
 
     const handleGoogleSing = ()=>{
         console.log("google")
     }
     return (
+      <>
+           <Helmet>
+                <title>Bistro | Sing Up</title>
+            </Helmet>
         <div className="md:flex md:flex-row-reverse justify-center items-center min-h-screen">
         <div className="md:w-1/2">
             <img src={loginImg} alt="" />
         </div>
       <div className="md:w-2/6 mx-auto border  rounded shadow-md shadow-gray-300 p-5">
         <h1 className="text-2xl font-medium mb-5 text-center text-orange-400">
-          LOGIN
+         Sing Up
         </h1>
-        <form onSubmit={handleSingUp}>
+        <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center mb-5 ">
             <label>
               <BsPeople className="text-2xl"></BsPeople>
             </label>
             <input
               type="text"
+              {...register("name", { required: true })}
               name="name"
               id=""
               placeholder="Your Name"
-              required
               className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-400"
             />
+            
           </div>
+          {errors.name?.type ==='required' && <span className="text-red-400 ml-10">Name is required</span>}
           <div className="flex items-center mb-5 ">
             <label>
               <AiOutlineMail className="text-2xl"></AiOutlineMail>
@@ -57,12 +69,13 @@ const SingUp = () => {
             <input
               type="email"
               name="email"
+              {...register("email", { required: true })}
               id=""
               placeholder="Your Email"
-              required
               className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-400"
             />
           </div>
+          {errors.email?.type === "required" && <span className="text-red-400 ml-10">Email is required</span>}
           <div className="flex items-center mb-5 relative">
             <label>
               <RiLockPasswordLine className="text-2xl"></RiLockPasswordLine>
@@ -70,9 +83,9 @@ const SingUp = () => {
             <input
               type={show ? "text" : "password"}
               name="password"
+              {...register("password",  { required: true, minLength: 6, maxLength: 20 })}
               id=""
               placeholder="Password"
-              required
               className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-400"
             />
             <span onClick={() => setShow(!show)} className="absolute right-10">
@@ -83,6 +96,9 @@ const SingUp = () => {
               )}
             </span>
           </div>
+          {errors.password?.type === "required" && <span className="text-red-400 ml-10">Password is required</span>}
+          {errors.password?.type === "minLength" && <span className="text-red-400 ml-10">Password must be 6 character.</span>}
+          {errors.password?.type === "maxLength" && <span className="text-red-400 ml-10">Password must less then 20 character.</span>}
           <input
             type="submit"
             value="Sing Up"
@@ -106,6 +122,7 @@ const SingUp = () => {
         </form>
       </div>
     </div>
+    </>
     );
 };
 
