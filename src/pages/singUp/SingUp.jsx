@@ -1,8 +1,9 @@
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { HiOutlinePhotograph } from "react-icons/hi";
 import { BsGoogle, BsPeople} from "react-icons/bs";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginImg from '../../assets/others/authentication1.png'
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
@@ -12,7 +13,9 @@ import { toast } from 'react-toastify'
 
 const SingUp = () => {
     const [show, setShow] = useState(false);
-    const {createUser} = useAuth();
+    const {createUser, updateUser} = useAuth();
+    const navigate = useNavigate();
+    const [error,setError] = useState("")
 
     const {
       register,
@@ -22,12 +25,18 @@ const SingUp = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-    reset();
-      const {email, password} = data || {}
+      const {email, password,name,photo} = data || {}
       createUser(email,password)
       .then(()=>{
-        toast.success("Successfully sing Up");
+        updateUser(name, photo)
+        .then(()=>{
+          toast.success("Successfully sing Up");
+          reset();
+          navigate('/')
+        })
+        .catch(error=>setError(error.message))
       })
+      .catch(error=>setError(error.message))
     };
 
     const handleGoogleSing = ()=>{
@@ -62,6 +71,21 @@ const SingUp = () => {
             
           </div>
           {errors.name?.type ==='required' && <span className="text-red-400 ml-10">Name is required</span>}
+          <div className="flex items-center mb-5">
+            <label>
+              <HiOutlinePhotograph className="text-2xl"></HiOutlinePhotograph>
+            </label>
+            <input
+              type="text"
+              name="photo"
+              {...register("photo", { required: true })}
+              id=""
+              placeholder="Photo URL"
+              className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-400"
+            />
+          </div>
+          {errors.photo?.type === "required" && <span className="text-red-400 ml-10">Photo is required</span>}
+
           <div className="flex items-center mb-5 ">
             <label>
               <AiOutlineMail className="text-2xl"></AiOutlineMail>
@@ -76,6 +100,7 @@ const SingUp = () => {
             />
           </div>
           {errors.email?.type === "required" && <span className="text-red-400 ml-10">Email is required</span>}
+
           <div className="flex items-center mb-5 relative">
             <label>
               <RiLockPasswordLine className="text-2xl"></RiLockPasswordLine>
@@ -110,6 +135,7 @@ const SingUp = () => {
               Login
             </Link>
           </p>
+          <p className="text-xl text-red-700">{error}</p>
           <p className="text-xl text-red-700"></p>
           <fieldset className="mt-5 border rounded border-orange-400 p-2">
             <legend className="text-center text-xl text-orange-400">

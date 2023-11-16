@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 
 
@@ -20,6 +20,12 @@ const AuthProvide = ({children}) => {
         return signInWithEmailAndPassword(auth,email,password);
     };
 
+    const updateUser= (name, photo)=>{
+       return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+          })
+    }
+
     const logOut = ()=>{
         setLoading(true);
         return signOut(auth);
@@ -28,6 +34,7 @@ const AuthProvide = ({children}) => {
     useEffect(()=>{
        const unsubscribe = onAuthStateChanged(auth, currentUser=>{
             setUser(currentUser);
+            console.log(currentUser)
             setLoading(false);
         });
 
@@ -40,6 +47,7 @@ const AuthProvide = ({children}) => {
         user,
         createUser,
         singInUser,
+        updateUser,
         logOut,
         loading
     }

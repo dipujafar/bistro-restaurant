@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [show, setShow] = useState(false);
   const [disable, setDisable] = useState(true);
+  const [error,setError] = useState('')
   const captchaRef = useRef(null);
   const { singInUser } = useAuth();
   const location = useLocation();
@@ -31,7 +32,8 @@ const Login = () => {
     singInUser(email, password).then(() => {
       toast.success("Successfully Login");
       navigate(location.state ? location.state : '/')
-    });
+    })
+    .catch(error=>setError(error.message))
   };
 
   const handleGoogleSing = () => {
@@ -137,6 +139,7 @@ const Login = () => {
                 Sing Up
               </Link>
             </p>
+            <p className="text-xl text-red-700">{error}</p>
             <p className="text-xl text-red-700"></p>
             <fieldset className="mt-5 border rounded border-orange-400 p-2">
               <legend className="text-center text-xl text-orange-400">
