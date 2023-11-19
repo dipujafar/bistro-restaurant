@@ -6,6 +6,8 @@ import Order from "../pages/order/Order";
 import Login from "../pages/login/Login";
 import SingUp from "../pages/singUp/SingUp";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../layout/Dashboard";
+import Cart from "../pages/dashboard/cart";
 
 
 const router = createBrowserRouter([
@@ -34,6 +36,16 @@ const router = createBrowserRouter([
     {
       path: "/singUp",
       element: <SingUp></SingUp>
+    },
+    {
+      path: '/dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: 'cart',
+          element:<Cart></Cart>
+        }
+      ]
     }
   ]);
 
