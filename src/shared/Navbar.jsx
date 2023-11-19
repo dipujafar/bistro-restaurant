@@ -2,14 +2,17 @@ import { NavLink } from "react-router-dom";
 import logo from '../assets/logoImg/logo.png'
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../hooks/useCart";
 
 const Navbar = () => {
-const {user,  logOut} = useAuth();
+  const { user, logOut } = useAuth();
+  const [cart] = useCart();
 
-const handleLogout = () =>{
-      logOut()
-      .then(()=>toast.error("Successfully Logged Out"))
-}
+  const handleLogout = () => {
+    logOut()
+      .then(() => toast.error("Successfully Logged Out"))
+  }
 
   const navOption = (
     <>
@@ -26,7 +29,7 @@ const handleLogout = () =>{
           to="/menu"
           className={({ isActive }) => (isActive ? "text-red-600" : "")}
         >
-         Our Menu
+          Our Menu
         </NavLink>
       </li>
       <li>
@@ -34,20 +37,26 @@ const handleLogout = () =>{
           to="/order/salad"
           className={({ isActive }) => (isActive ? "text-red-600" : "")}
         >
-         Order Food
+          Order Food
         </NavLink>
       </li>
       {user ?
-        <button onClick={handleLogout} className="btn btn-outline btn-sm btn-warning">Log Out</button>
+        <>
+          <NavLink to='/dashboard/cart' className='flex justify-center items-cente mr-2'>
+           <FaShoppingCart className="mr-1 text-xl"></FaShoppingCart>
+            <div className="badge badge-secondary">+{cart.length}</div>
+          </NavLink>
+          <button onClick={handleLogout} className="btn btn-outline btn-sm btn-warning">Log Out</button>
+        </>
         :
-      <li>
-        <NavLink
-          to="/login"
-          className={({ isActive }) => (isActive ? "text-red-600" : "")}
-        >
-        Login
-        </NavLink>
-      </li>
+        <li>
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? "text-red-600" : "")}
+          >
+            Login
+          </NavLink>
+        </li>
       }
     </>
   );

@@ -32,7 +32,7 @@ const SingUp = () => {
         .then(()=>{
           toast.success("Successfully sing Up");
           reset();
-          navigate('/')
+          navigate('/');
         })
         .catch(error=>setError(error.message))
       })

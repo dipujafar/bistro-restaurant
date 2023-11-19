@@ -55,10 +55,9 @@ const Dashboard = () => {
                         </NavLink>
                     </li>
 
-
                 </ul>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 p-6">
                 <Outlet></Outlet>
             </div>
         </div>
