@@ -13,6 +13,7 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
+import GoogleLogin from "../../Components/socialMedia/GoogleLogin";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -146,7 +147,7 @@ const Login = () => {
                 LOGIN WITH
               </legend>
               <p onClick={handleGoogleSing}>
-                <BsGoogle className="text-2xl text-blue-500 cursor-pointer"></BsGoogle>
+              <GoogleLogin></GoogleLogin>
               </p>
             </fieldset>
           </form>

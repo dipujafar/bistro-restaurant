@@ -8,6 +8,7 @@ import SingUp from "../pages/singUp/SingUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layout/Dashboard";
 import Cart from "../pages/dashboard/cart";
+import AllUser from "../pages/dashboard/Alluser";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         {
           path: 'cart',
           element:<Cart></Cart>
+        },
+        {
+          path: 'user',
+          element: <AllUser></AllUser>
         }
       ]
     }
