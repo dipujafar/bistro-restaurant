@@ -42,7 +42,30 @@ const AllUser = () => {
     };
 
     const handleMakeAdmin = user =>{
-        //
+        Swal.fire({
+            title: "Are you sure?",
+            text: `You won't be meke admin ${user.name}`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "confirm"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/users/admin/${user._id}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Successfully",
+                                text: `${user.name} is an admin now`,
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
     }
     return (
         <div>
@@ -68,8 +91,7 @@ const AllUser = () => {
                                     <th>{inx + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td>
-                                        <button onClick={() => handleMakeAdmin(user)} className="btn bg-orange-400"><FaUsers className="text-white text-2xl"></FaUsers></button>
+                                    <td>{user.role === "admin"? "Admin": <button onClick={() => handleMakeAdmin(user)} className="btn bg-orange-400"><FaUsers className="text-white text-2xl"></FaUsers></button>}
                                     </td>
                                     <td>
                                         <button onClick={() => handleDeleteUser(user)} className="btn bg-red-400"><FaTrashAlt className="text-white  text-xl"></FaTrashAlt></button>

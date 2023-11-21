@@ -37,9 +37,7 @@ const Login = () => {
     .catch(error=>setError(error.message))
   };
 
-  const handleGoogleSing = () => {
-    console.log("Google");
-  };
+
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -146,7 +144,7 @@ const Login = () => {
               <legend className="text-center text-xl text-orange-400">
                 LOGIN WITH
               </legend>
-              <p onClick={handleGoogleSing}>
+              <p>
               <GoogleLogin></GoogleLogin>
               </p>
             </fieldset>
