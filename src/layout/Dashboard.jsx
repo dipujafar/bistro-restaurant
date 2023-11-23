@@ -1,4 +1,4 @@
-import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaPhone, FaSearch, FaShoppingBag, FaShoppingCart, FaUser, FaUtensils } from "react-icons/fa";
+import { FaAd, FaBook, FaCalendar, FaHome, FaList, FaPhone, FaSearch, FaShoppingCart, FaUser, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
@@ -28,7 +28,7 @@ const Dashboard = () => {
                             </li>
 
                             <li>
-                                <NavLink to='/dashboard/manage' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
+                                <NavLink to='/dashboard/manageItems' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
                                     <FaList></FaList>
                                      Manage Items</NavLink>
                             </li>
