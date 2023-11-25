@@ -13,6 +13,9 @@ import AddItems from "../pages/dashboard/AddItems";
 import AdminRoute from "./AdminRoute";
 import ManageItems from "../pages/dashboard/ManageItems";
 import UpdateItem from "../pages/dashboard/UpdateItem";
+import Payment from "../pages/dashboard/Payment";
+import UserHome from "../pages/dashboard/UserHome";
+import AdminHome from "../pages/dashboard/AdminHome";
 
 
 const router = createBrowserRouter([
@@ -50,6 +53,14 @@ const router = createBrowserRouter([
           path: 'cart',
           element:<Cart></Cart>
         },
+        {
+          path: "payment",
+          element: <Payment></Payment>
+        },
+        {
+          path: 'userHome',
+          element: <UserHome></UserHome>
+        },
         // Admin only route
         {
           path: 'addItems',
@@ -66,6 +77,11 @@ const router = createBrowserRouter([
         {
           path: 'updateItem/:id',
           element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+          loader: ({params})=> fetch(`http://localhost:5000/menu/${params.id}`)
+        },
+        {
+          path: "adminHome",
+          element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
         }
       ]
     }

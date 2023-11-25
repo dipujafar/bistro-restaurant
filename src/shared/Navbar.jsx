@@ -4,9 +4,11 @@ import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
 
   const handleLogout = () => {
@@ -40,6 +42,26 @@ const Navbar = () => {
           Order Food
         </NavLink>
       </li>
+      {
+        user ? isAdmin ? <li>
+        <NavLink
+          to="/dashboard/adminHome"
+          className={({ isActive }) => (isActive ? "text-red-600" : "")}
+        >
+         Dashboard
+        </NavLink>
+      </li> 
+      :
+      <li>
+      <NavLink
+        to="/dashboard/userHome"
+        className={({ isActive }) => (isActive ? "text-red-600" : "")}
+      >
+       Dashboard
+      </NavLink>
+    </li> 
+      :
+      ""}
       {user ?
         <>
           <NavLink to='/dashboard/cart' className='flex justify-center items-cente mr-2'>
