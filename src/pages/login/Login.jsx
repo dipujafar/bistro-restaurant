@@ -1,6 +1,6 @@
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { BsGoogle, BsTextCenter } from "react-icons/bs";
+import {  BsTextCenter } from "react-icons/bs";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
