@@ -1,8 +1,7 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- About This Project
+- The web Site Make for a Restaurant.
+- This have Home, menu, Order Page.
+- There has implements firebase implement system.
+- This Website have two role User and Admin.
+## [Live Link](https://bistro-restaurant-7f5fa.firebaseapp.com)
+-- https://bistro-restaurant-7f5fa.firebaseapp.com/login
