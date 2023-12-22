@@ -16,12 +16,14 @@ import UpdateItem from "../pages/dashboard/UpdateItem";
 import Payment from "../pages/dashboard/Payment";
 import UserHome from "../pages/dashboard/UserHome";
 import AdminHome from "../pages/dashboard/AdminHome";
+import ErrorPage from "../pages/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: '/',
@@ -39,15 +41,18 @@ const router = createBrowserRouter([
     },
     {
       path: "/login",
-      element: <Login></Login>
+      element: <Login></Login>,
+      errorElement: <ErrorPage></ErrorPage>
     },
     {
       path: "/singUp",
-      element: <SingUp></SingUp>
+      element: <SingUp></SingUp>,
+      errorElement: <ErrorPage></ErrorPage>
     },
     {
       path: '/dashboard',
       element:<PrivateRoute><Dashboard></Dashboard> </PrivateRoute>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
           path: 'cart',
@@ -77,7 +82,7 @@ const router = createBrowserRouter([
         {
           path: 'updateItem/:id',
           element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-          loader: ({params})=> fetch(`https://bistro-restaurant-server-gamma.vercel.app/menu/${params.id}`)
+          loader: ({params})=> fetch(`http://localhost:5000/menu/${params.id}`)
         },
         {
           path: "adminHome",

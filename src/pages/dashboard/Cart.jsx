@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((acc, current) => acc + current.price, 0);
+  
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
@@ -37,7 +38,7 @@ const Cart = () => {
     <div>
       <div className="flex justify-evenly mb-4">
         <h1 className="text-3xl"> Items: {cart.length}</h1>
-        <h1 className="text-3xl"> TotalPrice: ${totalPrice}</h1>
+        <h1 className="text-3xl"> TotalPrice: ${totalPrice.toFixed(2)}</h1>
         <button disabled={!cart.length} className="btn btn-outline btn-sm btn-info">
         <Link to='/dashboard/payment'>
           pay

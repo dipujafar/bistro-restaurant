@@ -4,11 +4,10 @@ import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../hooks/useCart";
-import useAdmin from "../hooks/useAdmin";
+
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const [isAdmin] = useAdmin();
   const [cart] = useCart();
 
   const handleLogout = () => {
@@ -43,25 +42,15 @@ const Navbar = () => {
         </NavLink>
       </li>
       {
-        user ? isAdmin ? <li>
-        <NavLink
-          to="/dashboard/adminHome"
-          className={({ isActive }) => (isActive ? "text-red-600" : "")}
-        >
-         Dashboard
-        </NavLink>
-      </li> 
-      :
       <li>
       <NavLink
-        to="/dashboard/userHome"
+        to="/dashboard"
         className={({ isActive }) => (isActive ? "text-red-600" : "")}
       >
        Dashboard
       </NavLink>
     </li> 
-      :
-      ""}
+      }
       {user ?
         <>
           <NavLink to='/dashboard/cart' className='flex justify-center items-cente mr-2'>
@@ -119,7 +108,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {/* <a className="btn">Button</a> */}
         </div>
       </div>
     </>
