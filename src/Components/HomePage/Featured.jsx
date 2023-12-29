@@ -2,6 +2,7 @@ import SectionTitle from "../title/SectionTitle";
 import featuredImg from '../../assets/home/featured.jpg'
 import moment from "moment";
 import './Featured.css'
+import { Link } from "react-router-dom";
 
 const Featured = () => {
     return (
@@ -17,7 +18,9 @@ const Featured = () => {
                     <p className="text-2xl">{moment().format("dddd, MMM Do YYYY")}</p>
                     <p className="text-2xl">Where can get some?</p>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore, quaerat tempora laborum molestiae porro assumenda laboriosam vel esse ducimus. Totam rem pariatur, necessitatibus velit nostrum similique facilis fugit unde repellat sed consectetur. Ullam adipisci, incidunt dolore voluptatum corrupti, accusamus perspiciatis omnis architecto iusto quidem delectus totam! Accusamus sapiente dignissimos consequuntur.</p>
+                    <Link to="/order/salad">
                     <button className="btn btn-error btn-outline border-0 border-b-4 mt-4">Order Now</button>
+                    </Link>
                 </div>
             </div>
             </div>

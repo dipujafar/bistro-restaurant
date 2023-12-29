@@ -7,7 +7,6 @@ import Login from "../pages/login/Login";
 import SingUp from "../pages/singUp/SingUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layout/Dashboard";
-import Cart from "../pages/dashboard/cart";
 import AllUser from "../pages/dashboard/Alluser";
 import AddItems from "../pages/dashboard/AddItems";
 import AdminRoute from "./AdminRoute";
@@ -17,6 +16,7 @@ import Payment from "../pages/dashboard/Payment";
 import UserHome from "../pages/dashboard/UserHome";
 import AdminHome from "../pages/dashboard/AdminHome";
 import ErrorPage from "../pages/ErrorPage";
+import Cart from "../pages/dashboard/Cart";
 
 
 const router = createBrowserRouter([

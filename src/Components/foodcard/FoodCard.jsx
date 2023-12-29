@@ -3,7 +3,6 @@ import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import useCart from '../../hooks/useCart';
 const FoodCard = ({ item }) => {
