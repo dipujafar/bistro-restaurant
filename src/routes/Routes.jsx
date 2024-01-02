@@ -17,6 +17,7 @@ import UserHome from "../pages/dashboard/UserHome";
 import AdminHome from "../pages/dashboard/AdminHome";
 import ErrorPage from "../pages/ErrorPage";
 import Cart from "../pages/dashboard/Cart";
+import PaymentHistory from "../pages/dashboard/PaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
         {
           path: 'userHome',
           element: <UserHome></UserHome>
+        },
+        {
+          path: "paymentHistory",
+          element: <PaymentHistory></PaymentHistory>
         },
         // Admin only route
         {

@@ -55,16 +55,17 @@ const Dashboard = () => {
                                     User Home</NavLink>
                             </li>
 
-                            <li>
-                                <NavLink to='/dashboard/reservation' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
-                                    <FaCalendar></FaCalendar>
-                                    Reservation</NavLink>
-                            </li>
 
                             <li>
                                 <NavLink to='/dashboard/cart' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
                                     <FaShoppingCart></FaShoppingCart>
                                     My Cart ({cart.length})</NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/paymentHistory' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
+                                    <FaCalendar></FaCalendar>
+                                    Payment History</NavLink>
                             </li>
 
                             <li>
@@ -149,16 +150,18 @@ const Dashboard = () => {
                                     User Home</NavLink>
                             </li>
 
-                            <li>
-                                <NavLink to='/dashboard/reservation' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
-                                    <FaCalendar></FaCalendar>
-                                    Reservation</NavLink>
-                            </li>
+                           
 
                             <li>
                                 <NavLink to='/dashboard/cart' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
                                     <FaShoppingCart></FaShoppingCart>
                                     My Cart ({cart.length})</NavLink>
+                            </li>
+
+                            <li>
+                                <NavLink to='/dashboard/paymentHistory' className={({ isActive }) => (`flex  items-center gap-2 ${isActive ? "bg-red-600" : ""}`)} >
+                                    <FaCalendar></FaCalendar>
+                                    Payment History</NavLink>
                             </li>
 
                             <li>
