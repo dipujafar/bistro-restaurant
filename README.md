@@ -4,4 +4,4 @@
 - There has implements firebase implement system.
 - This Website have two role User and Admin.
 ## [Live Link](https://bistro-restaurant-7f5fa.firebaseapp.com)
--- https://bistro-restaurant-7f5fa.firebaseapp.com/login
+-- https://bistro-restaurant-7f5fa.firebaseapp.com/

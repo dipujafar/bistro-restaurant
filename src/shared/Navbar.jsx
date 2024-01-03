@@ -1,19 +1,18 @@
 import { NavLink } from "react-router-dom";
-import logo from '../assets/logoImg/logo.png'
+import logo from "../assets/logoImg/logo.png";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../hooks/useCart";
-
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [cart] = useCart();
-
+  const [isAdmin] = useAdmin();
   const handleLogout = () => {
-    logOut()
-      .then(() => toast.error("Successfully Logged Out"))
-  }
+    logOut().then(() => toast.error("Successfully Logged Out"));
+  };
 
   const navOption = (
     <>
@@ -41,25 +40,43 @@ const Navbar = () => {
           Order Food
         </NavLink>
       </li>
-      {
-      <li>
-      <NavLink
-        to="/dashboard"
-        className={({ isActive }) => (isActive ? "text-red-600" : "")}
-      >
-       Dashboard
-      </NavLink>
-    </li> 
-      }
-      {user ?
+      {user && isAdmin && (
+        <li>
+          <NavLink
+            to="/dashboard/adminHome"
+            className={({ isActive }) => (isActive ? "text-red-600" : "")}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink
+            to="/dashboard/userHome"
+            className={({ isActive }) => (isActive ? "text-red-600" : "")}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      {user ? (
         <>
-          <NavLink to='/dashboard/cart' className='flex justify-center items-cente mr-2'>
-           <FaShoppingCart className="mr-1 text-xl"></FaShoppingCart>
+          <NavLink
+            to="/dashboard/cart"
+            className="flex justify-center items-cente mr-2"
+          >
+            <FaShoppingCart className="mr-1 text-xl"></FaShoppingCart>
             <div className="badge badge-secondary">+{cart.length}</div>
           </NavLink>
-          <button onClick={handleLogout} className="btn btn-outline btn-sm btn-warning">Log Out</button>
+          <button
+            onClick={handleLogout}
+            className="btn btn-outline btn-sm btn-warning"
+          >
+            Log Out
+          </button>
         </>
-        :
+      ) : (
         <li>
           <NavLink
             to="/login"
@@ -68,7 +85,7 @@ const Navbar = () => {
             Login
           </NavLink>
         </li>
-      }
+      )}
     </>
   );
   return (
@@ -107,9 +124,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
-        <div className="navbar-end">
-          {/* <a className="btn">Button</a> */}
-        </div>
+        <div className="navbar-end">{/* <a className="btn">Button</a> */}</div>
       </div>
     </>
   );

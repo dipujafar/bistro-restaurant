@@ -5,8 +5,8 @@ const AdminHome = () => {
     const {user} = useAuth();
     return (
         <div>
-            <h2 className="text-3xl">
-               <span>Hi, Welcome</span>
+            <h2 className="text-3xl uppercase">
+               <span>Hi, Welcome </span>
                {
                 user?.displayName ? user?.displayName :  "Back"
                }
