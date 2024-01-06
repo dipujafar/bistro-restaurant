@@ -11,15 +11,13 @@ const GoogleLogin = () => {
     const handleGoogleSing = () => {
         googleSingIn()
             .then(result => {
-                console.log(result.user);
                 const uesrInfo = {
                     email: result.user.email,
                     name: result.user.displayName
                 };
 
                 axiosPublic.post('/users', uesrInfo)
-                    .then(res => {
-                        console.log(res.data);
+                    .then(()=> {
                         navigate("/")
                     });
             })

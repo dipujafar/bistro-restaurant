@@ -40,7 +40,6 @@ const SingUp = () => {
             }
             axiosPublic.post('/users', userInfo)
               .then(res => {
-                console.log(res.data);
                 if (res.data.insertedId) {
                   toast.success("Successfully sing Up");
                   reset();

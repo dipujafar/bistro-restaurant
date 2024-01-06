@@ -29,7 +29,6 @@ const useAxiosSecure = () => {
                 navigate('/login')
             })
         }
-        console.log("status error in interceptor", status);
         return Promise.reject(error);
     }) 
 

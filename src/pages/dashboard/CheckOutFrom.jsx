@@ -21,7 +21,6 @@ const CheckOutFrom = () => {
     if(totalPrice > 0){
       axiosSecure.post("/create-payment-intent", {price: totalPrice})
       .then(res=>{
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
       })
     }
@@ -46,10 +45,8 @@ const CheckOutFrom = () => {
     });
 
     if (error) {
-      console.log("Payment Error", error);
       setError(error.message)
     } else {
-      console.log("Payment method", paymentMethod);
       setError("")
     }
 
@@ -67,12 +64,10 @@ const CheckOutFrom = () => {
       )
 
       if(confirmError){
-        console.log(confirmError);
+        return
       }
       else{
-        console.log("Payment Intent", paymentIntent);
         if(paymentIntent.status == "succeeded"){
-          console.log("transaction id", paymentIntent.id);
           setTransaction(paymentIntent.id);
 
           // save payment details in database
@@ -87,7 +82,6 @@ const CheckOutFrom = () => {
           }
           const res = await axiosSecure.post("/payments", payment);
           refetch();
-          console.log("Payment Saved", res.data);
           if(res?.data?.paymentResult?.insertedId){
             toast.success("Payment Successful");
             navigate("/dashboard/paymentHistory")
