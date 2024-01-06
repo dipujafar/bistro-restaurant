@@ -4,6 +4,7 @@ import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -42,6 +43,9 @@ const AddItems = () => {
   };
   return (
     <div>
+       <Helmet>
+            <title>Add Items - Bistro</title>
+        </Helmet>
       <SectionTitle
         heading="Add an item"
         subHeading="What's New"

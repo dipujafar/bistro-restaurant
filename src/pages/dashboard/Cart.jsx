@@ -1,11 +1,15 @@
+/* eslint-disable react/no-unescaped-entities */
 import { FaTrashAlt } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import useAuth from "../../hooks/useAuth";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
+  const {user} = useAuth();
   const totalPrice = cart.reduce((acc, current) => acc + current.price, 0);
   
   const axiosSecure = useAxiosSecure();
@@ -36,6 +40,9 @@ const Cart = () => {
   };
   return (
     <div>
+      <Helmet>
+            <title>{user?.displayName}'s Items Cart</title>
+        </Helmet>
       <div className="flex justify-evenly mb-4">
         <h1 className="text-3xl"> Items: {cart.length}</h1>
         <h1 className="text-3xl"> TotalPrice: ${totalPrice.toFixed(2)}</h1>
